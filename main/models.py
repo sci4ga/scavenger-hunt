@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+from django_better_admin_arrayfield.models.fields import ArrayField
 
 # Create your models here.
 

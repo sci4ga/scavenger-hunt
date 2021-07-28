@@ -8,9 +8,6 @@
     <header>
         {% if user.is_authenticated %}
             <div>
-                Profile
-            </div>
-            <div>
                 <p><a href="{% url 'logout' %}">Log Out</a></p>
             </div>        
         {% else %}

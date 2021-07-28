@@ -4,16 +4,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  <div id="scavenger-hunt-tracker">
-    Step 1
-    Step 2
-  </div>
-  <div id="scavenger-hunt-current">
-    <form>
-      <label> Question 1</label>
-      <input type="text">
-    </form>
-  </div>
+  {% for quiz in quizzes %}
+    <div>
+      Title: {{quiz.title}}
+    </div>
+    <div>
+      Location: {{quiz.location}}
+    </div>
+  {% endfor %}
   Hi {{ user.username }}!
 {% else %}
   <p>You are not logged in</p>

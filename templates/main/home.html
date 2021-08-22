@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Science for GA Scavenger Hunt - Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/main/home.css' %}">
+{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   {% for quiz in quizzes %}
-    <div>
-      Title: {{quiz.title}}
+    <div class="text-red">
+      Title: {{quiz.title}} [{{quiz.id}}]
     </div>
     <div>
       Location: {{quiz.location}}

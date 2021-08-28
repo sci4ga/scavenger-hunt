@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Science for GA Scavenger Hunt - {{current_quiz.location}}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/main/quiz.css' %}?v=1.1">
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <a href="/">Return home</a>
+    <br>
+  {% for quiz in quizzes %}
+    <a href="{{quiz.id}}">
+      Title: {{quiz.title}} [{{quiz.id}}]
+    </a>
+    <div 
+        {%if quiz.id is current_quiz.id%}
+        class="text-red"
+        {%endif%}
+    >
+      Location: {{quiz.location}}
+    </div>
+    {%if quiz.id is current_quiz.id%}
+        {%if questions%}
+            {% for question in questions %}
+                <div>{{question.question_number}}: {{question.question_text}}</div>
+                {% if question.choices%}
+                    <form>
+                        <div>
+                        {% for choice in question.choices %}
+                            <input type="radio" name="question-choice" id="question-choice-{{choice}}" value={{choice}}>
+                            <label for="question-choice-{{choice}}">{{choice}}</label>
+                        {% endfor %}
+                        </div>
+                    </form>
+                {% else %}
+                    <div>No question choices found</div>
+                {% endif %}
+                <br>
+            {% endfor %}
+        {% else %}
+            <div>No questions found</div>
+        {% endif %}
+    {% endif %}
+    <br>
+  {% endfor %}
+  Hi {{ user.username }}!
+{% else %}
+  <p>You are not logged in</p>
+{% endif %}
+{% endblock %}

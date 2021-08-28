@@ -4,18 +4,19 @@
 {% block title %}Science for GA Scavenger Hunt - Home{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/main/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/main/home.css' %}?v=1.1">
 {% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   {% for quiz in quizzes %}
-    <div class="text-red">
+    <a href="quiz/{{quiz.id}}">
       Title: {{quiz.title}} [{{quiz.id}}]
-    </div>
-    <div>
+    </a>
+    <div class="text-gold">
       Location: {{quiz.location}}
     </div>
+    <br>
   {% endfor %}
   Hi {{ user.username }}!
 {% else %}
